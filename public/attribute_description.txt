@@ -1,0 +1,31 @@
+﻿Job - I am currently employed at least part-time
+SelfMentalIllness - I identify as having a mental illness
+Education - Education
+OwnLaptop - I have my own computer separate from a smart phone
+HospitalizationBeforeForMentalIllness - I have been hospitalized before for my mental illness
+HowManyDaysHospitalized - How many days were you hospitalized for your mental illness
+LegallyDisabled - I am legally disabled
+HaveRegularAccessTotheInternet - I have my regular access to the internet
+LiveWithParents - I live with my parents
+HaveGapInResume - I have a gap in my resume
+TotalLengthOfGapsInResume - Total length of any gaps in my resume in months.
+AnnualIncome - Annual income (including any social welfare programs) in USD
+Unemployed - I am unemployed	
+ReadOutsideOfWork_School - I read outside of work and school
+AnnualIncomeFromSocialWelfarePrograms - Annual income from social welfare programs
+ReceiveFoodStamps - I receive food stamps
+OnSectionEightHousing - I am on section 8 housing
+HowManyTimeHospitalizedFmentalIllness - How many times were you hospitalized for your mental illness
+LackOfConcentration - Lack of concentration
+Anxiety - Anxiety
+Depression - Depression
+ObsessiveThinking - Obsessive thinking
+MoodSwings - Mood swings
+PanicAttacks - Panic attacks
+CompulsiveBehavior - Compulsive behavior
+Tiredness - Tiredness
+Age - Age
+Gender - Gender
+HouseholdIncome - Household Income
+Region - Region
+DeviceType - Device Type

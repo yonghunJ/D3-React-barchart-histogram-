@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import D3Chart from './D3Chart';
+import D3Chart2 from './D3Chart2';
 
 export default class ChartWrapper extends Component {
 	componentDidMount() {
 		this.setState({
-			chart: new D3Chart(this.refs.chart)
+			chart: new D3Chart2(this.refs.chart)
 		})
 	}
 
@@ -13,8 +13,7 @@ export default class ChartWrapper extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		this.state.chart.update(nextProps.gender)
-
+		this.state.chart.updateHistogram(nextProps.gender,nextProps.value)
 		
 	}
 
