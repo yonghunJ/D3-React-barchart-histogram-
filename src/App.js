@@ -26,30 +26,36 @@ function App() {
   
   return (
     <>
-      <Navbar bg="light">
-        <Navbar.Brand>Unemployment and mental illness survey(Numeric)</Navbar.Brand>
+      <Navbar bg="lightskyblue">
+        <Navbar.Brand style={{ "text-align": "center", "width": "100%"}}>Unemployment and mental illness survey(Categorical)</Navbar.Brand>
       </Navbar>
-      <Container>
-        <Row >
-          <Col xs={12}><GenderDropdown genderSelected = {setGender } chartelected = {setChart }/></Col>
-        </Row>
+      <Container style={{ backgroundColor: "lightblue"}}>
         <Row>
           <Col xs={12}>
             <ChartWrapper gender ={gender} chart = {chart}/>
           </Col>
         </Row>
+        <Row >
+          <Col xs={12}><GenderDropdown genderSelected = {setGender } chartelected = {setChart }/></Col>
+        </Row>
         <ColoredLine color="black" />
         
       </Container>
 
-      <Navbar bg="light">
-        <Navbar.Brand>Unemployment and mental illness survey(Categorical)</Navbar.Brand>
+      <Navbar bg="lightskyblue">
+        <Navbar.Brand style={{ "text-align": "center", "width": "100%"}}>Unemployment and mental illness survey(Numeric)</Navbar.Brand>
       </Navbar>
-      <Container>
-      <Row >
+      <Container  style={{ backgroundColor: "lightblue"}}>
+      
+        <Row>
+          <Col xs={12}>
+            <ChartWrapper2 gender ={gender2} chart = {chart2} value= {value}/>
+          </Col>
+        </Row>
+        <Row >
           <Col xs={6}><GenderDropdown2 genderSelected = {setGender2 } chartelected = {setChart2 } /></Col>
           <Col xs={6}>
-          <RangeSlider
+          <span>Slider for Bin width /size</span><RangeSlider
             min ={1}
             max ={20}
             value={value}
@@ -57,12 +63,9 @@ function App() {
             onChange={changeEvent => setValue(parseInt(changeEvent.target.value))}
           />
           </Col>
+          
         </Row>
-        <Row>
-          <Col xs={12}>
-            <ChartWrapper2 gender ={gender2} chart = {chart2} value= {value}/>
-          </Col>
-        </Row>
+        <ColoredLine color="black" />
       </Container>
     </>)
 }

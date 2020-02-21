@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
 import * as dp from "./dataProcesing";
-const MARGIN = {TOP: 50, BOTTOM: 100, LEFT: 70, RIGHT: 10};
+const MARGIN = {TOP: 100, BOTTOM: 100, LEFT: 70, RIGHT: 10};
 const WIDTH = 1000 - MARGIN.LEFT - MARGIN.RIGHT;
 const HEIGHT = 600 - MARGIN.BOTTOM - MARGIN.TOP;
 
@@ -58,9 +58,12 @@ export default class D3Chart {
 			let [e,f] = dp.AnnualSalarybyMentalIllness(dataset[0])
 			vis.SelfIllness = e; vis.NonSelfIllness = f
 
+			let [g,h] = dp.ResumeGapbyMentalIllness(dataset[0])
+			vis.SelfIllness_resumegap = g; vis.NonSelfIllness_resumegap = h
 			// vis.update('Uneployment_Education')
 			vis.updateHistogram('SelfIllness_AnnualSalary',2)
-
+			let [i,j] = dp.HaveAnxiety_HowManyDaysHospitalized(dataset[0])
+			vis.anxiety_hospitalized = i; vis.Donthave_anxiety_hospitalized = j
         })
 	}
 
@@ -71,13 +74,29 @@ export default class D3Chart {
 		
 		if(data === "SelfIllness_AnnualSalary"){
 			vis.data = vis.SelfIllness
-			vis.xLabel.text("Self Illiness Salary(THOUSANDS OF DOLLARS)")
-			vis.yLabel.text("The Number of People")
+			vis.xLabel.text("Salary(THOUSANDS OF DOLLARS)")
+			vis.yLabel.text("The Number of Self Illiness People")
 
 		}else if(data === "NonSelfIllness_AnnualSalary"){
+			vis.data = vis.NonSelfIllness_resumegap
+			vis.xLabel.text("Salary(THOUSANDS OF DOLLARS)")
+			vis.yLabel.text("The Number of Non Self Illiness People")
+		}else if(data === "SelfIllness_TotalLengthOfGapsInResume"){
+			vis.data = vis.SelfIllness_resumegap
+			vis.xLabel.text("Resume Gap(Days)")
+			vis.yLabel.text("The Number of Self Illines People")
+		}else if(data === "NonSelfIllness_TotalLengthOfGapsInResume"){
 			vis.data = vis.NonSelfIllness
-			vis.xLabel.text("Non Self Illiness Salary(THOUSANDS OF DOLLARS)")
-			vis.yLabel.text("The Number of People")
+			vis.xLabel.text("Resume Gap(Days)")
+			vis.yLabel.text("The Number of Non Self Illiness People")
+		}else if(data === "HaveAnxiety_HowManyDaysHospitalized"){
+			vis.data = vis.anxiety_hospitalized
+			vis.xLabel.text("How Many Days Hospitalized(Days)")
+			vis.yLabel.text("The Number of People who have Anxiety")
+		}else if(data === "DontHaveAnxiety_HowManyDaysHospitalized"){
+			vis.data = vis.Donthave_anxiety_hospitalized
+			vis.xLabel.text("How Many Days Hospitalized(Days)")
+			vis.yLabel.text("The Number of People who don't Have Anxiety")
 		}
 		
 		let x = d3.scaleLinear()
@@ -105,9 +124,6 @@ export default class D3Chart {
 		// And apply this function to data to get the bins
 		var bins = histogram(vis.data);
 
-
-		
-		console.log("Wefew",x.domain())	 
 		// Join
 		const rects  = vis.svg.selectAll("rect").data(bins)
 		// EXIT

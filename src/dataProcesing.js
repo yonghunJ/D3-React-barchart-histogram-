@@ -98,6 +98,30 @@ export const ResumeeGapAndSalary = (data) =>{
 
 }
 
+export const Age_Depression = (data) => {
+    const age = {
+        "45-60":0,
+        "30-44":0,
+        "18-29":0,
+        "> 60":0}
+
+    const un = []
+
+    for(let i=0; i <data.length ; i+=1){
+        if (data[i].Depression=== "1"){
+        if (  Object.keys(age).includes(data[i].Age) )
+            age[data[i].Age] += 1
+        }
+
+    }
+
+    for(const e in age){
+    un.push({"name":e, "height": age[e]})
+    }
+
+    return un
+}
+
 // Input(3 types) = >$xx,000-$xx,999 , $200,000+, Prefer not to answer
 // Output(Average) = > 75,000 , 200,000
 function getHouseholdIncome(input){
@@ -139,3 +163,33 @@ export const AnnualSalarybyMentalIllness = (data) => {
     return [self_illness,Nonself_illness]
 
 }
+
+export const ResumeGapbyMentalIllness = (data) =>{
+    const self_illness = []
+    const Nonself_illness = []
+    for(let i=0; i <data.length ; i+=1){
+        if(data[i].SelfMentalIllness === "0"){ // self identified illness
+            Nonself_illness.push({"price":parseInt(data[i].TotalLengthOfGapsInResume)})
+        }else{
+            self_illness.push({"price":parseInt(data[i].TotalLengthOfGapsInResume)})
+        }
+    }
+
+
+    return [self_illness,Nonself_illness]
+}
+
+export const HaveAnxiety_HowManyDaysHospitalized = (data) =>{
+    const have_anxiety = []
+    const donthave_anxiety = []
+    for(let i=0; i <data.length ; i+=1){
+        if(data[i].Anxiety=== "0"){ // self identified illness
+            donthave_anxiety.push({"price":parseInt(data[i].HowManyDaysHospitalized)})
+        }else{
+            have_anxiety.push({"price":parseInt(data[i].HowManyDaysHospitalized)})
+        }
+    }
+
+
+    return [have_anxiety,donthave_anxiety]
+}   
